@@ -7,10 +7,6 @@
     response.setHeader("Pragma", "no-cache");
     response.setHeader("Expires", "0");
 
-    if (session.getAttribute("usuario") == null) {
-        request.getRequestDispatcher("./view/Login.jsp").forward(request, response);
-    }
-
     Date date = new Date();
     DateFormat fecha = new SimpleDateFormat("dd.MMM.yyyy");
     Date ahora = new Date();
@@ -18,5 +14,5 @@
 
 %>
 <meta charset="UTF-8">
-<title>PHYSIO SANA</title>
-<link rel="icon" type="imagen/png" href="imagen/physiosana.png" />
+<title>INKA TRAVELS</title>
+<link rel="icon" type="imagen/png" href="imagen/ico.png" />
