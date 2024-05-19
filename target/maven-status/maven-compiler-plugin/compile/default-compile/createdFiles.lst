@@ -1,4 +1,4 @@
-org\logistica\resources\JakartaEE10Resource.class
-org\logistica\JakartaRestConfiguration.class
-org\logistica\controller\login.class
-org\logistica\controller\logout.class
+org/logistica/resources/JakartaEE10Resource.class
+org/logistica/controller/logout.class
+org/logistica/controller/login.class
+org/logistica/JakartaRestConfiguration.class

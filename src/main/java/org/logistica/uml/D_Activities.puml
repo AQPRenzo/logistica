@@ -1,0 +1,39 @@
+@startuml
+start
+:CreaPerfilUsuario();
+->Crea Nuevo USUARIO bajo\nel ROL Y PERFIL asignado;                                                           
+if (VerificarUsuario()) then (Sí)
+  :Acceso Permitido;
+    ->Valida el NIVEL DE ACCESO y\n PERMISO de USUARIO;
+  :RegistrarRequerimientosPedido();
+    ->getRecepcionarPedido()Vendedor/AppControlador;
+  :Terminal Recepciona el Pedido ;
+    ->RecepcionaRequerimientoPedido();
+  if (Crear y Procesar Pedido Completo) then (Sí)
+      :Pedido Completado;
+        ->EntregarPedido();
+      :Notificar AppVista;
+        ->EnviarPedido();
+        if (Registrar Pedido DB) then (Sí)
+          :Pedido Registrado\nCOMMIT;
+            ->NotificarPedido();
+          :Notificar Pedido AppVista;
+            ->EntregaPedido();
+          :Envio a Cliente;
+        else (No)
+          :Pedido Rechazado\nROLLBACK;
+        endif
+  else (No)
+    :Error Pedido; 
+     '->ErrorPedido();
+  endif
+else (No)
+  :Usuario No Registrado;
+    '->Valida el NIVEL DE ACCESO\ny PERMISO de USUARIO;
+  :Crear USUARIO con\nROL y PERFIL asignado;
+endif
+
+:Fin;
+stop
+
+@enduml

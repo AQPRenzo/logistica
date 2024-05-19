@@ -1,0 +1,44 @@
+@startuml
+
+  package "Servidor de Aplicaciones" {
+    () "java" as O
+    [WAR] as SA
+  }
+  
+  database "Servidor de Datos" as DB  {
+    package "Componentes"  {
+      [FIREBIRD] as FB
+      [Extensiónes jar] as EJ
+    }
+  }
+
+  package "Servidor WEB" {
+    '[ ] "java" as ( )
+    [ ] as ( )
+    [GLASSFISH] as GF
+  }
+ cloud "Mayen" {
+ [Repositorios] as RP
+}
+  
+ cloud "HTTPS//127.0.0.1:8080" as HTTPS {
+ [Service getUpCloud()] as SG
+  }
+ cloud "SSL" {
+ [Cotroller Service getUpCloud() ] as CS
+
+
+ O - SA
+( ) - GF
+SA --> ( ) :getUpConection() >
+DB --> ( ) :getUpConection() >
+SA --> DB :JPA/HIBERNATE >
+GF --> RP :getDownloand() >
+SA --> RP :getDownloand() >
+FB --> RP :getDownloand() >
+EJ --> RP :getDownloand() >
+EJ --> HTTPS :Service OnCloud() >
+RP --> HTTPS :Service OnCloud() >
+HTTPS --> SSL : Security gerSendData() >
+
+@enduml 
