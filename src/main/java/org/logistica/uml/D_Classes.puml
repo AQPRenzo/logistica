@@ -1,2 +1,183 @@
 @startuml
+package "Sistema de Entrada de Mercaderia" {
+    package "Bin" {
+
+        class Documento {
+           -id_Documento
+           -codigo
+           -nombre
+          
+        }
+
+        
+        class Categoria{
+            -id_Categoria
+            -nombre_categoria
+         }
+        
+        
+        
+        
+        
+         class Producto{
+            -idCurso
+            -nombre
+            
+     
+            
+        }
+        
+        
+        
+        class Compra{
+            -id_Compra
+            -serie
+            -fecha
+            -glosa
+            
+        }
+
+        class DetalleCompra{
+            -id_DetalleCompra
+            -cantidad
+            
+        }
+
+        class Almacen{
+            -id_Almacen
+            -almacen
+            
+        }
+        
+}
+
+package "Servicios Ingreso de Mercaderias" {
+
+    interface iDocuemnto{
+        --Métodos--
+    }
+    
+    
+     interface iCategoria {
+        --Métodos--
+    }
+    
+   
+    
+      interface iProducto{
+        --Métodos--
+    }
+    
+     interface iCompra{
+        --Métodos--
+    }
+    
+      interface iDetalleCompra{
+        --Métodos--
+    }
+    
+    
+     interface iAlmacen{
+        --Métodos--
+    }
+    
+    interface iCrud {
+        +Crear()
+        +Actualizar()
+        +Mostrar()
+        +Eliminar()
+    }
+}
+
+
+Documento -> iDocumento: Implementa\n Metodos
+Categoria  -> iCategoria: Implementa\n Metodos
+Producto -> iProducto: Implementa\n Metodos
+Compra-> iCompra: Implementa\n Metodos
+DetalleCompra -> iDetalleCompra: Implementa\n Metodos
+Almacen -> iAlmacen: Implementa\n Metodos
+
+
+iDocumento  -> iCrud: Implementa\n Métodos
+iCategoria -> iCrud: Implementa\n Métodos
+iProducto  -> iCrud: Implementa\n Métodos
+iCompra -> iCrud: Implementa\n Métodos
+iDetalleCompra  -> iCrud: Implementa\n Métodos
+iAlmacen  -> iCrud: Implementa\n Métodos
+
+
+
+
+Categoria =o Producto: Puede contener
+
+
+
+
+package dao {
+
+
+    class DocumentoImpl {
+        --Métodos--
+    }
+    
+    
+    class CategoriaImpl {
+        --Métodos--
+    }
+   
+    
+    class ProductoImpl {
+        --Metodos--
+    }
+    
+    
+      class CompraImpl {
+        --Metodos--
+    }
+    
+      class DetalleCompraImpl {
+        --Metodos--
+    }
+    
+
+  class AlmacenImpl {
+        --Metodos--
+    }
+
+    DocumentoImpl -> iDocumento: Implementa\n Métodos
+    CategoriaImpl -> iCategoria: Implementa\n Métodos
+    ProductoImpl -> iProducto: Implementa\n Métodos
+    CompraImpl -> iCompra: Implementa\n Métodos
+    DetalleCompraImpl-> iDetalleCompra: Implementa\n Métodos
+    AlmacenImpl-> iAlmacen: Implementa\n Métodos
+
+    DocumentoImpl -> iCrud: Implementa\n Métodos
+    CategoriaImpl -> iCrud: Implementa\n Métodos
+    ProductoImpl -> iCrud: Implementa\n Métodos
+    CompraImpl -> iCrud: Implementa\n Métodos
+    DetalleCompraImpl -> iCrud: Implementa\n Métodos
+    AlmacenImpl -> iCrud: Implementa\n Métodos
+     
+}
+
+package Factory {
+    class Factory {
+        --Métodos--
+        +Documento()
+        +Categoria()
+        +Producto()
+        +Compra()
+        +DetalleCompra()
+        +Almacen()
+    }
+
+    Factory =o DocuemtoImpl: Binding
+    Factory =o CategoriaImpl: Binding
+    Factory =o ProductoImpl: Binding
+    Factory =o CompraImpl: Binding
+    Factory =o DetalleCompraImpl: Binding
+    Factory =o AlmacenImpl: Binding
+
+}
+    }
 @enduml

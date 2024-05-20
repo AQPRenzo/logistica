@@ -1,2 +1,28 @@
 @startuml
+
+package "Inventario" {
+  node App{
+   
+   component Personal
+   component Producto as producto
+   interface "Verifica\nIngreso-Egreso" as v
+   
+   producto-v
+
+ }
+cloud servidorWEB{
+   frame GlassFish {
+  }
+ }
+  node httSSL{
+   
+   component SSL as ssl
+   interface "HTTP" as http
+   
+   ssl-http
+
+}
+App --> servidorWEB : Despliega servicios en el servicio web
+servidorWEB --> httSSL : Despliega
+}
 @enduml

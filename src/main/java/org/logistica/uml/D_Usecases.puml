@@ -1,0 +1,43 @@
+@startuml
+boundary LogisiticoComedor as f
+boundary AlmacenComedor as d
+
+
+
+
+package  "Ingreso de Mercaderia"{
+usecase "Control de calidad" as uc12
+usecase "Descarga de Mercaderia" as uc0
+
+usecase "Almacenamiento Mercaderia" as uc13
+usecase "Recepcion de Mercaderia" as uc14
+
+
+usecase "Clasificacion de Mercaderia" as uc10
+usecase "Caracteristicas de la Mercaderia" as uc1
+usecase "Dimensiones" as uc2
+usecase "Precio" as uc3
+usecase "Peso" as uc4
+usecase "Tipo Almacen" as uc5
+usecase "Destino Mercaderia" as uc6
+
+
+f-->uc14: [001] Ejecuta Ingreso Mercaderia
+uc14-->d: [002] Solicita Documento Ingreso Mercaderia
+
+
+
+
+
+uc12 .. uc1 :[7] <<include>>
+uc0 .. uc10 :[2] <<include>>
+uc1 .. uc2 :[10] <<include>>
+uc1 .. uc3 :[9] <<include>>
+uc1 .. uc4 :[8] <<include>>
+uc14 .. uc12 :[6] <<include>>
+uc14 .. uc0 :[1] <<include>>
+uc5 .. uc13 :[5] <<include>>
+uc6 .. uc5 :[4] <<include>>
+uc10 .. uc6:[3] <<include>>
+
+@enduml

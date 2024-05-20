@@ -19,7 +19,7 @@ if (VerificarUsuario()) then (Sí)
             ->NotificarPedido();
           :Notificar Pedido AppVista;
             ->EntregaPedido();
-          :Envio a Cliente;
+          :Envio a proveedor;
         else (No)
           :Pedido Rechazado\nROLLBACK;
         endif

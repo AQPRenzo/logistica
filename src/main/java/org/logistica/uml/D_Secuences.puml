@@ -8,23 +8,24 @@ collections "crear y procesar\npedido completo" as CP
 boundary AppVista as AV
 database Base_de_Datos as DB
 
-
 AD --> DB : [001] CreaPerfilUsuario()
 group Iniciar Sesión
 AD --> SU: [002] IniciarSesion()
+activate SU
 SU --> AD : [003] CredencialesCorrectas()
+deactivate SU
 end group
-AD--> SR :[004]RegistrarRequerimientoPedido()
-SR--> VD :[005]RecepcionaRequerimientoPedido()
-SR--> AC :[006]RecepcionaRequerimientoPedido()
+AD--> SR :[004]RegistraMercaderia()
+SR--> VD :[005]RecepcionaRequerimientoMercaderia()
+SR--> AC :[006]RecepcionaRequerimientoMercaderia()
 group Validar Pedido Completo
-VD --> CP: [007] Procesar PedidoCompleto()
-AC --> CP :[008] Procesar PedidoCompleto()
+VD --> CP: [007] Procesar MercaderiaCompleta()
+AC --> CP :[008] Procesar MercaderiaCompleta()
 VD <-- CP :[009] ErrorPedido()
 AC <-- CP :[010] ErrorPedido()
 end group
-CP --> AV :[011]EntregarPedido()
-AV --> DB :[012]RegistrarPedido()
+CP --> AV :[011]EntregarMercaderia()
+AV --> DB :[012]RegistrarMercaderia()
 DB --> AD:[013]NotificarPedido()
-@enduml
 
+@enduml
