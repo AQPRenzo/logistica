@@ -1,0 +1,29 @@
+@startuml
+actor Usuario as AD
+collections "Sesion de\nusuario" as SU
+collections "Solicitar Catálogo" as SR
+actor Comedor as  VD
+boundary AppControlador as AC
+collections "Crear y Procesar\nCatálogo completo" as CP
+boundary AppVista as AV
+database Base_de_Datos as DB
+
+
+AD --> DB : [001] CreaPerfilUsuario()
+group Iniciar Sesión
+AD --> SU: [002] IniciarSesion()
+SU --> AD : [003] CredencialesCorrectas()
+end group
+  AD--> SR :[004]RegistrarRequerimientoCatálogo()
+SR--> VD :[005]RecepcionaRequerimientoCatálogo()
+SR--> AC :[006]RecepcionaRequerimientoCatálogo()
+group Validar Catálogo Completo
+VD --> CP: [007] Procesar CatálogoCompleto()
+AC --> CP :[008] Procesar CatálogoCompleto()
+VD <-- CP :[009] ErrorCatálogo()
+AC <-- CP :[010] ErrorCatálogo()
+end group
+CP --> AV :[011]VisualizarCatálogo()
+AV --> DB :[012]RegistrarCatálogo()
+DB --> AD:[013]NotificarSolicitudCatálogo()
+@enduml

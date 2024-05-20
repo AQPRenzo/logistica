@@ -1,0 +1,52 @@
+@startuml
+boundary AppComedor as f
+actor Cliente as d
+
+
+
+
+package  "Catálogo de Proveedores,Productos e Insumos"{
+
+
+
+usecase "Catálogo Producto" as uc0
+usecase "Catálogo Proveedor" as uc13
+
+usecase "Catálogos" as uc14
+
+
+usecase "Diseño Catálogo" as uc10
+
+usecase "Caracteristicas" as uc1
+usecase "Dimensiones" as uc2
+usecase "Precio" as uc3
+usecase "Peso" as uc4
+
+usecase "Imagen o fotografia" as uc7
+
+usecase "Imagen de marca" as uc9
+usecase "Clasificación Proveedores" as uc15
+usecase "Datos Proveedores" as uc16
+usecase "Catálogo Insumo" as uc12
+
+
+f-->uc14: [001] Proporciona Catálogo
+uc14-->d: [002] Solicita Catálogo
+
+uc0 .. uc1 :[12] <<include>>
+uc12 .. uc1 :[5] <<include>>
+uc0 .. uc10 :[13] <<include>>
+uc12 .. uc10 :[9] <<include>>
+uc1 .. uc2 :[6] <<include>>
+uc1 .. uc3 :[8] <<include>>
+uc1 .. uc4 :[7] <<include>>
+uc10 .. uc7 :[10] <<include>>
+uc10 .. uc9 :[14] <<include>>
+uc14 .. uc0 :[11] <<extend>>
+uc14 .. uc12 :[4] <<extend>>
+uc14 .. uc13 :[1] <<extend>>
+uc13 .. uc15 :[3] <<include>>
+uc13 .. uc16 :[2] <<include>>
+
+
+@enduml
